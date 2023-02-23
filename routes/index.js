@@ -6,9 +6,8 @@ const key=require('./key');
 
 router.get(`/message`, function (req, res, next) {
   const { message, sender, character, location, radius } = req.query;
-
-  const content = `\`TeleportPlayer ${location}\`
-\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
+  //`\`TeleportPlayer ${location}\`
+  const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
 ${message}\`\`\``;
 
   axios.post(
