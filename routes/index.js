@@ -41,12 +41,12 @@ ${message}\`\`\``;
 router.get(`/log`, function (req, res, next) {
   const { charName, eventType, eventId, eventCategory, params } = req.query;
 
-  const content = `Who:${charName}
-  Log: ${eventType}
+  const content = `\`\`\`Who:${charName}
+Log: ${eventType}
 Event Category:${eventCategory}
 Event Type:${eventType}
 Event Id: ${eventId}
-Params: ${params}`;
+Params: ${params}\`\`\``;
 
   axios.post(
     `${key.rr}`,
