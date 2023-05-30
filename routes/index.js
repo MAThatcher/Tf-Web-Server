@@ -25,7 +25,12 @@ ${message}\`\`\``;
   ${message}\n\n`; // Append a new line to the data
 
   // Write the data to the log file (appending if the file exists, creating if it doesn't)
-  fs.appendFile(logFilePath, logEntry, (err) => { });
+  fs.appendFile(logFilePath, logEntry, (err) => { 
+    if (err) {
+    console.error(`Error writing to log file: ${err}`);
+  } else {
+    console.log(`Data appended to log file: ${logFileName}`);
+  }});
 
   res.json({
     ManifestFileVersion: "000000000000",
