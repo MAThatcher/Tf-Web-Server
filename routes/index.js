@@ -23,7 +23,9 @@ ${message}\`\`\``;
   const logFilePath = `logs/${logFileName}`; // Path to the log file
   const logEntry = `${currentTime} - ${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
   ${message}\n\n`; // Append a new line to the data
-
+  if (!fs.existsSync('logs')) {
+    fs.mkdirSync('logs');
+  }
   // Write the data to the log file (appending if the file exists, creating if it doesn't)
   fs.appendFile(logFilePath, logEntry, (err) => { 
     if (err) {
