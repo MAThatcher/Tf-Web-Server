@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-
+const fs = require('fs');
+const path = require('path');
 const key=require('./key');
 
 router.get(`/message`, function (req, res, next) {
@@ -16,7 +17,16 @@ ${message}\`\`\``;
       content: content,
     }
   );
+  const currentDate = new Date();
+  const currentTime = currentDate.toTimeString().split(' ')[0]; // Get the time portion of the timestamp
+  const logFileName = `Logger_10${currentDate.toISOString().split('T')[0]}.txt`;
+  const logFilePath = `logs/${logFileName}`; // Path to the log file
+  const logEntry = `${currentTime} - ${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
+  ${message}\n\n`; // Append a new line to the data
 
+  // Write the data to the log file (appending if the file exists, creating if it doesn't)
+  fs.appendFile(logFilePath, logEntry, (err) => { });
+  
   res.json({
     ManifestFileVersion: "000000000000",
     bIsFileData: false,
@@ -37,6 +47,7 @@ ${message}\`\`\``;
     CustomFields: {},
   });
 });
+
 
 router.get(`/log`, function (req, res, next) {
   const { charName, eventType, eventId, eventCategory, params } = req.query;
