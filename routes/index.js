@@ -9,7 +9,7 @@ router.get(`/message`, function (req, res, next) {
   const { message, sender, character, location, radius } = req.query;
   //`\`TeleportPlayer ${location}\`
   const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
-${message}\`\`\``;
+${message}${location}\`\`\``;
 
   axios.post(
     `${key.chat}`,
@@ -58,6 +58,48 @@ Params: ${params}\`\`\``;
 
   axios.post(
     `${key.rr}`,
+    {
+      content: content,
+    }
+  );
+  // if (`${params}`.includes("Auto: HoF")) {
+  //   const test = "<@178606380947603456> someone has been bad and murdered";
+  //   axios.post(
+  //     `${key.rr}`,
+  //     {
+  //       content:test,
+  //     }
+  //   );
+  // } 
+
+  res.json({
+    ManifestFileVersion: "000000000000",
+    bIsFileData: false,
+    AppID: "000000000000",
+    AppNameString: "",
+    BuildVersionString: "",
+    LaunchExeString: "",
+    LaunchCommand: "",
+    PrereqIds: [],
+    PrereqName: "",
+    PrereqPath: "",
+    PrereqArgs: "",
+    FileManifestList: [],
+    ChunkHashList: {},
+    ChunkShaList: {},
+    DataGroupList: {},
+    ChunkFilesizeList: {},
+    CustomFields: {},
+  });
+});
+
+router.get(`/error`, function (req, res, next) {
+  const { message } = req.query;
+
+  const content = message
+
+  axios.post(
+    `${key.error}`,
     {
       content: content,
     }
