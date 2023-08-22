@@ -17,10 +17,11 @@ ${message}${location}\`\`\``;
       content: content,
     }
   );
+  const content2 = content + `_${location}`
   axios.post(
     `${key.home}`,
     {
-      content: content,
+      content: content2,
     }
   );
 
