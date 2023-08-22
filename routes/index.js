@@ -17,7 +17,7 @@ ${message}\`\`\``;
       content: content,
     }
   );
-  const content2 = content + `_${location}`
+  const content2 = content +`\`TeleportPlayer ${location}\``
   axios.post(
     `${key.home}`,
     {
