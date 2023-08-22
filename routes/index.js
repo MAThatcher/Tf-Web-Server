@@ -9,7 +9,7 @@ router.get(`/message`, function (req, res, next) {
   const { message, sender, character, location, radius } = req.query;
   //`\`TeleportPlayer ${location}\`
   const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
-${message}${location}\`\`\``;
+${message}\`\`\``;
 
   axios.post(
     `${key.chat}`,
