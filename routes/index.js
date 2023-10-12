@@ -7,7 +7,6 @@ const key = require('./key');
 
 router.get(`/message`, function (req, res, next) {
   const { message, sender, character, location, radius } = req.query;
-  //`\`TeleportPlayer ${location}\`
   const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
 ${message}\`\`\``;
 
@@ -63,15 +62,6 @@ Params: ${params}\`\`\``;
       content: content,
     }
   );
-  // if (`${params}`.includes("Auto: HoF")) {
-  //   const test = "<@178606380947603456> someone has been bad and murdered";
-  //   axios.post(
-  //     `${key.rr}`,
-  //     {
-  //       content:test,
-  //     }
-  //   );
-  // } 
 
   res.json({
     ManifestFileVersion: "000000000000",
@@ -127,6 +117,38 @@ router.get(`/error`, function (req, res, next) {
   });
 });
 
+router.get(`/personal`, function (req, res, next) {
+  const { message, sender, character, location, radius } = req.query;
+  const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
+${message}\`\`\``;
+
+  axios.post(
+    `${key.personal}`,
+    {
+      content: content,
+    }
+  );
+
+  res.json({
+    ManifestFileVersion: "000000000000",
+    bIsFileData: false,
+    AppID: "000000000000",
+    AppNameString: "",
+    BuildVersionString: "",
+    LaunchExeString: "",
+    LaunchCommand: "",
+    PrereqIds: [],
+    PrereqName: "",
+    PrereqPath: "",
+    PrereqArgs: "",
+    FileManifestList: [],
+    ChunkHashList: {},
+    ChunkShaList: {},
+    DataGroupList: {},
+    ChunkFilesizeList: {},
+    CustomFields: {},
+  });
+});
 
 module.exports = router;
 
