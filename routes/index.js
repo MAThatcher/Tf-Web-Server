@@ -118,9 +118,8 @@ router.get(`/error`, function (req, res, next) {
 });
 
 router.get(`/personal`, function (req, res, next) {
-  const { message, sender, character, location, radius } = req.query;
-  const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
-${message}\`\`\``;
+  const { message, sender} = req.query;
+  const content = `\`\`\`${sender}:${message}\`\`\``;
 
   axios.post(
     `${key.personal}`,
