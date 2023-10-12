@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const fs = require('fs');
 const path = require('path');
-const key=require('./key');
+const key = require('./key');
 
 router.get(`/message`, function (req, res, next) {
   const { message, sender, character, location, radius } = req.query;
@@ -17,7 +17,7 @@ ${message}\`\`\``;
       content: content,
     }
   );
-  const content2 = content +`\`TeleportPlayer ${location}\``
+  const content2 = content + `\`TeleportPlayer ${location}\``
   axios.post(
     `${key.home}`,
     {
@@ -127,4 +127,6 @@ router.get(`/error`, function (req, res, next) {
   });
 });
 
+
 module.exports = router;
+
