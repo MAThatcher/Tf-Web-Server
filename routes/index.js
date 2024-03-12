@@ -99,10 +99,10 @@ router.get(`/personal`, function (req, res, next) {
 
 function processShift(shift) {
   const shiftTypes = {
-    "Start Lowtown Tavern Shift": "Lowtown Tavern",
-    "Start Hightown Tavern Shift": "Hightown Tavern",
-    "Start Lowtown Brothel Shift": "Lowtown Brothel",
-    "Start Hightown Brothel Shift": "Hightown Brothel"
+    "Start Hightown Clinic Shift": "work at the Hightown Clinic",
+    "Start Hightown Tavern Shift": "work at the Hightown Tavern",
+    "Start Hightown Brothel Shift": "work at the Hightown Brothel",
+    "Start Guard Shift": "work as a Guard"
   };
 
   for (const [shiftType, location] of Object.entries(shiftTypes)) {
@@ -110,7 +110,7 @@ function processShift(shift) {
       const pipeIndex = shift.indexOf('|');
       const openParenIndex = shift.indexOf('(');
       const nameSubstring = shift.substring(pipeIndex + 1, openParenIndex).trim();
-      const content2 = `:exclamation: ${nameSubstring} has started working at the ${location}!`;
+      const content2 = `:exclamation: ${nameSubstring} has started ${location}!`;
       postShift(content2, key.rr);
       break;
     }
