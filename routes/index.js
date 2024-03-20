@@ -103,7 +103,7 @@ function processShift(shift) {
     "Start Hightown Tavern Shift": "work at the Hightown Tavern",
     "Start Hightown Brothel Shift": "work at the Hightown Brothel",
     "Start Intructor Shift": "instructing others in Hightown",
-    "Start Slave Training Shift": "instructing slaves in Hightown",
+    "Start Slave Training Shift": "instructing slaves in the Den",
     "Start Guard Shift": "work as a Guard"
   };
 
