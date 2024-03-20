@@ -102,6 +102,8 @@ function processShift(shift) {
     "Start Hightown Clinic Shift": "work at the Hightown Clinic",
     "Start Hightown Tavern Shift": "work at the Hightown Tavern",
     "Start Hightown Brothel Shift": "work at the Hightown Brothel",
+    "Start Intructor Shift": "instructing others in Hightown",
+    "Start Slave Training Shift": "instructing slaves in Hightown",
     "Start Guard Shift": "work as a Guard"
   };
 
@@ -111,7 +113,7 @@ function processShift(shift) {
       const openParenIndex = shift.indexOf('(');
       const nameSubstring = shift.substring(pipeIndex + 1, openParenIndex).trim();
       const content2 = `:exclamation: ${nameSubstring} has started ${location}!`;
-      postShift(content2, key.rr);
+      postShift(content2, key.callout);
       break;
     }
   }
