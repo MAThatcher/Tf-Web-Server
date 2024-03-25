@@ -104,7 +104,7 @@ function processShift(shift) {
     "Start Hightown Brothel Shift": "work at the Hightown Brothel",
     "Start Intructor Shift": "instructing others in Hightown",
     "Start Slave Training Shift": "training slaves in the Slums",
-    "Start Guard Shift": "work as a Guard",
+    "Start Guard Shift": "work as a Guard", 
     "Start Lowtown Brothel Shift": "work at the Lowtown Brothel",
     "Start Slums Clinic Shift": "work at the Slums Clinic"
   };
