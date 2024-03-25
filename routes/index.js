@@ -105,7 +105,8 @@ function processShift(shift) {
     "Start Intructor Shift": "instructing others in Hightown",
     "Start Slave Training Shift": "training slaves in the Slums",
     "Start Guard Shift": "work as a Guard",
-    "Start Hightown Clinic Shift": "healing in the Hightown Clinic"
+    "Start Lowtown Brothel Shift": "work at the Lowtown Brothel",
+    "Start Slums Clinic Shift": "work at the Slums Clinic"
   };
 
   for (const [shiftType, location] of Object.entries(shiftTypes)) {
