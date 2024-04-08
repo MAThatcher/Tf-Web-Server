@@ -50,12 +50,33 @@ Params: ${params}\`\`\``;
     if (eventType === 'Dice' && eventId === 'RR_ABILITY_USE' && eventCategory === 'Roleplay Redux') {
       processShift(shift);
     }
+    if (eventType === 'FlowChart' && eventId === 'FlowChartLog' && eventCategory === 'Admin') {
+      axios.post(
+        `${server.rr}`, { content: "Server is Online", }
+      );
+      res.json({
+        success: true,
+        message: '/log call successfull',
+      });
+    }
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+function processShift(shift) {
 
+  for (const [shiftType, location] of Object.entries(shiftTypes)) {
+    if (shift.includes(shiftType)) {
+      const pipeIndex = shift.indexOf('|');
+      const openParenIndex = shift.indexOf('(');
+      const nameSubstring = shift.substring(pipeIndex + 1, openParenIndex).trim();
+      const content2 = `:exclamation: ${nameSubstring} has started ${location}!`;
+      postShift(content2, key.callout);
+      break;
+    }
+  }
+}
 router.get(`/error`, function ({ query }, res, next) {
   try {
     const { message } = query;
@@ -104,7 +125,7 @@ function processShift(shift) {
     "Start Hightown Brothel Shift": "work at the Hightown Brothel",
     "Start Intructor Shift": "instructing others in Hightown",
     "Start Slave Training Shift": "training slaves in the Slums",
-    "Start Guard Shift": "work as a Guard", 
+    "Start Guard Shift": "work as a Guard",
     "Start Lowtown Brothel Shift": "work at the Slums Brothel",
     "Start Slums Clinic Shift": "work at the Slums Clinic",
     "Start Lowtown Tavern Shift": "work at the Slums Tavern"
