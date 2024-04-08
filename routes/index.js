@@ -64,19 +64,7 @@ Params: ${params}\`\`\``;
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-function processShift(shift) {
 
-  for (const [shiftType, location] of Object.entries(shiftTypes)) {
-    if (shift.includes(shiftType)) {
-      const pipeIndex = shift.indexOf('|');
-      const openParenIndex = shift.indexOf('(');
-      const nameSubstring = shift.substring(pipeIndex + 1, openParenIndex).trim();
-      const content2 = `:exclamation: ${nameSubstring} has started ${location}!`;
-      postShift(content2, key.callout);
-      break;
-    }
-  }
-}
 router.get(`/error`, function ({ query }, res, next) {
   try {
     const { message } = query;
