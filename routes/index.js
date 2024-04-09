@@ -56,7 +56,7 @@ Params: ${params}\`\`\``;
       );
       res.json({
         success: true,
-        message: '/log call successfull',
+        message: '/log call successfull: Server is online',
       });
     }
   } catch (error) {
