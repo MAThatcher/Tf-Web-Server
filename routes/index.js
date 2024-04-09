@@ -52,7 +52,7 @@ Params: ${params}\`\`\``;
     }
     if (eventType === 'FlowChart' && eventId === 'FlowChartLog' && eventCategory === 'Admin') {
       axios.post(
-        `${key.server}`, { content: "Server is Online", }
+        `${key.server}`, { content: ":white_check_mark: Server is Online", }
       );
       res.json({
         success: true,
