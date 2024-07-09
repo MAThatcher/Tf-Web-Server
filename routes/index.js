@@ -61,6 +61,17 @@ Params: ${params}\`\`\``;
         console.error("Error:", error.message);
       }
     }
+    if (eventType === 'FlowChart' && eventId === 'FlowChartLog' && eventCategory === 'Admin' && params.includes('Player has logged in')) {
+      try {
+        online = `:ballot_box_with_check: ${charName} has logged in`
+        axios.post(
+          `${key.online}`, { content: online }
+        );
+      }
+      catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
