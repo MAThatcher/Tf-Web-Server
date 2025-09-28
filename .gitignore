@@ -1,4 +1,3 @@
-
 routes/key.js
-logs/*
 error.log
+node_modules/
