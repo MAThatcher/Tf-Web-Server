@@ -5,11 +5,14 @@ const fs = require('fs');
 const path = require('path');
 const key = require('./key');
 
+const INTERNAL_SERVER_ERROR = "Internal Server Error";
+
 router.get(`/personal`, async function (req, res, next) {
   try {
     const { message = '', sender = '' } = req.query;
     if (!message) {
-      return res.status(400).json({ success: false, error: 'Missing message query parameter' });
+      res.status(400).json({ success: false, error: 'Missing message query parameter' });
+      return;
     }
     const MAX_CHARS = 1950;
     const chunks = [];
@@ -47,14 +50,15 @@ router.get(`/personal`, async function (req, res, next) {
     } catch (fsCatchErr) {
       console.error('Failed to prepare error log:', fsCatchErr.message);
     }
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: INTERNAL_SERVER_ERROR });
   }
 });
 
 router.get(`/RenMessage`, function (req, res, next) {
   try {
   const { message, sender, character, radius } = req.query;
-    const content = `\`\`\`${sender}${sender !== character ? " (" + character + ")" : ""} ${radius}s:
+    const charSuffix = sender !== character ? ` (${character})` : "";
+    const content = `\`\`\`${sender}${charSuffix} ${radius}s:
 ${message}\`\`\``;
 
     axios.post(
@@ -68,7 +72,7 @@ ${message}\`\`\``;
   }
   catch (error) {
     console.error("Error:", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: INTERNAL_SERVER_ERROR });
   }
 });
 
@@ -90,7 +94,7 @@ Params: ${params}\`\`\``;
     });
   } catch (error) {
     console.error("Error:", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: INTERNAL_SERVER_ERROR });
   }
 });
 module.exports = router;
